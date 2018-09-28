@@ -45,10 +45,10 @@ sub list_handle { # handle the output of /list
   my $buffer=weechat::buffer_search("irc", "server.$server"); # output buffer
   shift(@list); # cut the start
   pop(@list); # and end
-  @list = sort { ($b=~/(?:\S+ ){4}(\S+)/)[0] <=> ($a=~/(?:\S+ ){4}(\S+)/)[0] } @list; # sort the list by users count
+  @list = sort { ($b=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){3}(\S+)/)[0] <=> ($a=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){3}(\S+)/)[0] } @list; # sort the list by users count
   weechat::print($buffer, weechat::prefix("network")."Users Channel Topic");
   foreach my $line (@list) {
-    if($line=~/(?:\S+ ){3}(\S+) (\S+) :(.*)/){ # print the list
+    if($line=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){2}(\S+) (\S+) :(.*)/){ # print the list
       weechat::print($buffer, weechat::prefix("network").weechat::color("bold")."$2 ".weechat::color("darkgray")."$1".weechat::color("default")." $3");
     }
   }
@@ -83,9 +83,9 @@ sub list_end {
   my $server=$_[1];
   $server=~s/,.*//;
   my $buffer=weechat::buffer_search("irc", "server.$server");
-  @list = sort { ($b=~/(?:\S+ ){4}(\S+)/)[0] <=> ($a=~/(?:\S+ ){4}(\S+)/)[0] } @list;
+  @list = sort { ($b=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){3}(\S+)/)[0] <=> ($a=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){3}(\S+)/)[0] } @list;
   foreach my $line (@list) {
-    if($line=~/(?:\S+ ){3}(\S+) (\S+) :(.*)/){ # print the list
+    if($line=~/(?:@\S+ )?(?::\S+ )?(?:\S+ ){2}(\S+) (\S+) :(.*)/){ # print the list
       weechat::print($buffer, weechat::prefix("network").weechat::color("bold")."$2 ".weechat::color("darkgray")."$1".weechat::color("default")." $3");
     }
   }
