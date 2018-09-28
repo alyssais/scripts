@@ -2,7 +2,7 @@
 
 # This program is free software: you can modify/redistribute it under the terms of
 # GNU General Public License by Free Software Foundation, either version 3 or later
-# which you can get from <http://www.gnu.org/licenses/>. 
+# which you can get from <http://www.gnu.org/licenses/>.
 # This program is distributed in the hope that it will be useful, but without any warranty.
 
 # Todo: support for /list -re
